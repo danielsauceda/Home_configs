@@ -40,7 +40,7 @@
 
 
 (put 'upcase-region 'disabled nil)
-
+;;test comment
 
 ;; org mode hooks
 (add-hook 'org-mode-hook 
