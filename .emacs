@@ -42,6 +42,10 @@
 (put 'upcase-region 'disabled nil)
 ;;test comment
 
+;; org mode dot
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((dot . t))) ; this line activates dot
 
 
 ;; ;; org mode --> latex Export
