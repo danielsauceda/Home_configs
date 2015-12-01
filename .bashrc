@@ -113,6 +113,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
+function flush_temp() {
+    echo $(rm -v *~)
+    echo $(rm -v */#)
+}
+
 
 
 #USER DEFINED FUNCTIONS
