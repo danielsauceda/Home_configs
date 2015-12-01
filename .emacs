@@ -127,9 +127,12 @@ ____________________________________
 
 (defun python-template()
   (interactive)
-  (insert "##########################")
+  (insert "#############################")
   (insert "\n")
   (insert (getenv "USER"))
   (insert (format-time-string "%Y-%m-%d"))
+  (insert "\n")
+  (insert "#################################")
+
 )
 
