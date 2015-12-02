@@ -115,7 +115,7 @@ fi
 
 function flush_temp() {
     echo $(rm -v *~)
-    echo $(rm -v */#)
+    echo $(rm -v *#)
 }
 
 
