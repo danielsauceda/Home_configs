@@ -135,9 +135,3 @@ function gm_push() {
     echo $(git commit -m "$1" && git push origin)
     
 }
-
-
-
-
-
-
