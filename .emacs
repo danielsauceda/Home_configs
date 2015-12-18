@@ -94,6 +94,7 @@
 ;; python workspace
 
 
+(global-set-key (kbd "\C-x /") 'python-workspace)
 (defun python-workspace ()
   "opens up my personal emacs workspace
 ____________________________________
