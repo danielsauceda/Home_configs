@@ -135,3 +135,7 @@ function gm_push() {
     echo $(git commit -m "$1" && git push origin)
     
 }
+
+function underscore_file()  {
+    for file in *; do mv "$file" `echo $file | tr ' ' '_'` ; done
+}
