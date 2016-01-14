@@ -95,6 +95,8 @@
 
 
 (global-set-key (kbd "\C-x /") 'python-workspace)
+(global-set-key (kbd "\C-x #") 'comment-region)
+
 (defun python-workspace ()
   "opens up my personal emacs workspace
 ____________________________________
