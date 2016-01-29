@@ -132,8 +132,12 @@ ____________________________________
 (defun python-template()
   (interactive)
   (insert "#############################")
-  (insert "\n")
+  (insert "#\n")
+  (insert "#\n")
+  (insert "#")
   (insert (getenv "USER"))
+  (insert "#\n")
+  (insert "#")
   (insert (format-time-string "%Y-%m-%d"))
   (insert "\n")
   (insert "#################################")
@@ -174,3 +178,32 @@ ____________________________________
   (insert "    main()")
 )
 
+
+;; Planner setup
+(add-to-list 'load-path "~/.elisp/muse/lisp")
+(add-to-list 'load-path "~/.elisp/planner")
+(add-to-list 'load-path "~/.elisp/remember")
+
+
+(setq planner-project "WikiPlanner")
+     (setq muse-project-alist
+           '(("WikiPlanner"
+             ("~/plans"   ;; Or wherever you want your planner files to be
+             :default "index"
+             :major-mode planner-mode
+	          :visit-link planner-visit-link))))
+     (require 'planner)
+
+
+;; ace jump mode
+
+(add-to-list 'load-path "which-folder-ace-jump-mode-file-in/")
+    (require 'ace-jump-mode)
+    (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+
+;; set tab stops
+(add-hook 'python-mode-hook
+      (lambda ()
+        (setq-default indent-tabs-mode nil)
+        (setq-default tab-width 4)
+        (setq-default python-indent 4)))
