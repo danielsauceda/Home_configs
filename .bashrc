@@ -94,6 +94,10 @@ alias home='ssh daniel@danielsauceda34.ddns.net'
 alias genomic='ssh danielsauceda@genomics01.bio.tamu.edu'
 alias lab='ssh danielsauceda@arroyavelab15.tamu.edu'
 
+# keyboard maps
+xmodmap -e "keysym 0xff67 = Super_L"
+
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
