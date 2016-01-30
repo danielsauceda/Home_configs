@@ -9,6 +9,12 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+# keyboard maps
+exec xmodmap -e "keysym 0xff67 = Super_L"
+
+
+
+
 exec nm-applet
 set $mod Mod4
 
