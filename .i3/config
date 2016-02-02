@@ -11,8 +11,9 @@
 
 # keyboard maps
 exec xmodmap -e "keysym 0xff67 = Super_L"
-
+bindsym $mod+m exec firefox
 exec nm-applet
+
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
