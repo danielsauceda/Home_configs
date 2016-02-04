@@ -1,3 +1,4 @@
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -21,6 +22,10 @@
 ;; below this is paragraph is where we add any and 
 ;; all package repositories
 
+
+; list the packages you want
+(setq package-list '(ace-jump-mode auctex company-jedi))
+
 (when (>= emacs-major-version 24)
   (require 'package)
   (add-to-list
@@ -28,6 +33,19 @@
    '("melpa" . "http://melpa.org/packages/")
    t)
   (package-initialize))
+
+; activate all the packages (in particular autoloads)
+(package-initialize)
+
+; fetch the list of packages available 
+(unless package-archive-contents
+  (package-refresh-contents))
+
+; install the missing packages
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
+
 
 
 ;;screen appearance settings
@@ -180,10 +198,12 @@ ____________________________________
 
 
 ;; Planner setup
+(condition-case nil
+
+
 (add-to-list 'load-path "~/.elisp/muse/lisp")
 (add-to-list 'load-path "~/.elisp/planner")
 (add-to-list 'load-path "~/.elisp/remember")
-
 
 (setq planner-project "WikiPlanner")
      (setq muse-project-alist
@@ -194,7 +214,7 @@ ____________________________________
 	          :visit-link planner-visit-link))))
      (require 'planner)
 
-
+  (error nil))
 ;; ace jump mode
 
 (add-to-list 'load-path "which-folder-ace-jump-mode-file-in/")
