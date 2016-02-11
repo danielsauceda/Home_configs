@@ -145,3 +145,6 @@ function gm_push() {
 function underscore_file()  {
     for file in *; do mv "$file" `echo $file | tr ' ' '_'` ; done
 }
+function gm_pull_all() {
+    for i in `ls`; do cd $i;  git pull ;cd ..  ;done
+}
