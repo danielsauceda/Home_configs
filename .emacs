@@ -1,17 +1,17 @@
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (wheatgrass)))
- '(custom-safe-themes (quote ("0f2411f632019ef9fb71a14a84eaaf00407feba56ae1f6840f7915beecbe1a40" "54e437ebedac98418d42a6dc87390f25b1448f2807272915616b7889bb3edad7" default))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+;; (custom-set-variables
+;;  ;; custom-set-variables was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(custom-enabled-themes (quote (wheatgrass)))
+;;  '(custom-safe-themes (quote ("0f2411f632019ef9fb71a14a84eaaf00407feba56ae1f6840f7915beecbe1a40" "54e437ebedac98418d42a6dc87390f25b1448f2807272915616b7889bb3edad7" default))))
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  )
 (setq inhibit-startup-message t)
 ;; basic configs
 (setq column-number-mode t)
@@ -27,15 +27,21 @@
 (setq package-list '(ace-jump-mode auctex company-jedi))
 
 (when (>= emacs-major-version 24)
+  ;; package.el
   (require 'package)
-  (add-to-list
-   'package-archives
-   '("melpa" . "http://melpa.org/packages/")
-   t)
-  (package-initialize))
+  
+  (add-to-list 'package-archives
+	       '("marmalade" . "http://marmalade-repo.org/packages/") t)
+  (add-to-list 'package-archives
+	       '("melpa" . "http://melpa.org/packages/") t)
+  (add-to-list 'package-archives 
+	       '("org" . "http://orgmode.org/elpa/") t)
+  
+  (package-initialize)
 
-; activate all the packages (in particular autoloads)
-(package-initialize)
+)
+;; activate all the packages (in particular autoloads)
+;; (package-initialize)
 
 ; fetch the list of packages available 
 (unless package-archive-contents
@@ -147,55 +153,56 @@ ____________________________________
   (next-multiframe-window)
 )
 
-(defun python-template()
-  (interactive)
-  (insert "#############################")
-  (insert "#\n")
-  (insert "#\n")
-  (insert "#")
-  (insert (getenv "USER"))
-  (insert "#\n")
-  (insert "#")
-  (insert (format-time-string "%Y-%m-%d"))
-  (insert "\n")
-  (insert "#################################")
-  (insert "\n")
-  (insert "\n")
-  (insert "\n")
-  (insert "#start code here")
-  (insert "\n")
-  (insert "\n")
-  (insert "\n")
-  (insert "def function_1(arg):")
-  (insert "\n")
-  (insert "    \"\"\"")
-  (insert "\n")
-  (insert "    \"\"\"")
-  (insert "\n")
-  (insert "    #some code")
-  (insert "\n")
-  (insert "\n")
-  (insert "\n")
-  (insert "\n")
-  (insert "\n")
-  (insert "def main():")
-  (insert "\n")
-  (insert "    \"\"\"")
-  (insert "    Main block of code for workflow")
-  (insert "\n")
-  (insert "    \"\"\"")
-  (insert "\n")
-  (insert "    #some code")
-  (insert "\n")
-  (insert "\n")
-  (insert "\n")
-  (insert "\n")
-  (insert "\n")
-  (insert "if __name__==\"__main__\":")
-  (insert "\n")
-  (insert "    main()")
-)
+;; (defun python-template()
+;;   (interactive)
+;;   (insert "#############################")
+;;   (insert "#\n")
+;;   (insert "#\n")
+;;   (insert "#")
+;;   (insert (getenv "USER"))
+;;   (insert "#\n")
+;;   (insert "#")
+;;   (insert (format-time-string "%Y-%m-%d"))
+;;   (insert "\n")
+;;   (insert "#################################")
+;;   (insert "\n")
+;;   (insert "\n")
+;;   (insert "\n")
+;;   (insert "#start code here")
+;;   (insert "\n")
+;;   (insert "\n")
+;;   (insert "\n")
+;;   (insert "def function_1(arg):")
+;;   (insert "\n")
+;;   (insert "    \"\"\"")
+;;   (insert "\n")
+;;   (insert "    \"\"\"")
+;;   (insert "\n")
+;;   (insert "    #some code")
+;;   (insert "\n")
+;;   (insert "\n")
+;;   (insert "\n")
+;;   (insert "\n")
+;;   (insert "\n")
+;;   (insert "def main():")
+;;   (insert "\n")
+;;   (insert "    \"\"\"")
+;;   (insert "    Main block of code for workflow")
+;;   (insert "\n")
+;;   (insert "    \"\"\"")
+;;   (insert "\n")
+;;   (insert "    #some code")
+;;   (insert "\n")
+;;   (insert "\n")
+;;   (insert "\n")
+;;   (insert "\n")
+;;   (insert "\n")
+;;   (insert "if __name__==\"__main__\":")
+;;   (insert "\n")
+;;   (insert "    main()")
+;; )
 
+(load-file "~/.emacs.d/emacs_ext/templates.el")
 
 ;; Planner setup
 (condition-case nil
@@ -227,3 +234,12 @@ ____________________________________
         (setq-default indent-tabs-mode nil)
         (setq-default tab-width 4)
         (setq-default python-indent 4)))
+
+
+
+;;org library
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((python . t)))
+
+(setq org-src-fontify-natively t)

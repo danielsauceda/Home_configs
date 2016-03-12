@@ -145,6 +145,12 @@ function gm_push() {
 function underscore_file()  {
     for file in *; do mv "$file" `echo $file | tr ' ' '_'` ; done
 }
-function gm_pull_all() {
+function git_pull_all() {
     for i in `ls`; do cd $i;  git pull ;cd ..  ;done
+}
+
+function send_text() {
+    if [ -z "$1"];then
+	$(curl http://textbelt.com/text -d number=9566488498 -d "message=Job is done")
+    fi
 }
