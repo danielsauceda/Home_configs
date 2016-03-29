@@ -154,3 +154,7 @@ function send_text() {
 	$(curl http://textbelt.com/text -d number=9566488498 -d "message=Job is done")
     fi
 }
+function bat_charge() {
+    upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state|to\ full|percentage"
+
+}
