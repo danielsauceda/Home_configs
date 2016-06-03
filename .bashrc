@@ -3,6 +3,7 @@
 # for examples
 
 # If not running interactively, don't do anything
+IFS=$'\n'
 case $- in
     *i*) ;;
       *) return;;
