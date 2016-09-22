@@ -10,16 +10,13 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 #set background
-exec_always --no-startup-id feh --bg-fill `python ~/Applications/Wallpapers/random_select.py`
+exec_always --no-startup-id feh --bg-fill ~/Applications/Wallpapers/steampunk_wall.jpg
 exec_always --no-startup-id xrandr --output DVI-I-1 --mode 1920x1080 --right-of DVI-D-0
 #exec_always --no-startup-id feh --bg-fill ~/Downloads/domestic_goat_stock_6_by_fantasystock.jpg
 # keyboard maps
 exec xmodmap -e "keysym 0xff67 = Super_L"
 bindsym $mod+m exec firefox
 exec nm-applet
-
-#TODO: fix wallpaper reset
-bindsym $mod+p exec feh --bg-fill `python ~/Applications/Wallpapers/random_select.py`
 
 set $mod Mod4
 
