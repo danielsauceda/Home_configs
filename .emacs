@@ -12,8 +12,23 @@
 ;;  ;; Your init file should contain only one such instance.
 ;;  ;; If there is more than one, they won't work right.
 ;;  )
+
+(setq frame-title-format
+  '(:eval
+    (if buffer-file-name
+        (replace-regexp-in-string
+         "\\\\" "/"
+         (replace-regexp-in-string
+          (regexp-quote (getenv "HOME")) "~"
+          (convert-standard-filename buffer-file-name)))
+      (buffer-name))))
+
+
+
+
 (setq inhibit-startup-message t)
 ;; basic configs
+
 (setq column-number-mode t)
 (global-set-key [(control h)] 'delete-backward-char)
 (setq standard-indent 2)
@@ -117,10 +132,9 @@
 
 ;; python workspace
 
-
 (global-set-key (kbd "\C-x /") 'python-workspace)
 (global-set-key (kbd "\C-x #") 'comment-region)
-
+(global-set-key (kbd "\C-x ,") 'code-block)
 (defun python-workspace ()
   "opens up my personal emacs workspace
 ____________________________________
@@ -202,7 +216,15 @@ ____________________________________
 ;;   (insert "    main()")
 ;; )
 
-(load-file "~/.emacs.d/emacs_ext/templates.el")
+;; (load-file "~/.emacs.d/emacs_ext/templates.el")
+
+
+(defun code-block()
+  (interactive)
+  (insert "#+BEGIN_SRC bash\n\n")
+  (insert "#+END_SRC")
+  )
+
 
 ;; Planner setup
 (condition-case nil
@@ -243,3 +265,6 @@ ____________________________________
  '((python . t)))
 
 (setq org-src-fontify-natively t)
+
+
+(add-to-list 'load-path "~/.emacs.d/Other/")
