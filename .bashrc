@@ -3,7 +3,6 @@
 # for examples
 
 # If not running interactively, don't do anything
-IFS=$'\n'
 case $- in
     *i*) ;;
       *) return;;
@@ -17,8 +16,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=5000
-HISTFILESIZE=10000
+HISTSIZE=""
+HISTFILESIZE=""
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -147,7 +146,7 @@ function underscore_file()  {
     for file in *; do mv "$file" `echo $file | tr ' ' '_'` ; done
 }
 function git_pull_all() {
-    for i in `ls`; do cd $i;  git pull ;cd ..  ;done
+    for i in `ls`; do cd $i;echo -n "$i...";  git pull ;cd ..  ;done
 }
 
 function send_text() {
@@ -159,3 +158,19 @@ function bat_charge() {
     upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state|to\ full|percentage"
 
 }
+# added by Anaconda3 4.1.1 installer
+export PATH="/home/danielsauceda/Applications/anaconda3/bin:$PATH"
+
+# added by Anaconda2 4.1.1 installer
+export PATH="/home/danielsauceda/Applications/anaconda2/bin:$PATH"
+export PATH="/home/danielsauceda/Documents:$PATH"
+export PATH="/opt/ros/kinetic/bin:$PATH"
+source /opt/ros/kinetic/setup.bash
+
+# settings for master
+export ROS_IP=128.194.111.32
+export ROS_HOSTNAME=$ROS_IP
+export ROS_MASTER_URI=http://$ROS_IP:11311
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
